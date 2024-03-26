@@ -1,11 +1,12 @@
 class class_pokemon {
     static all_pokemons = {};
-    constructor(pokemon_id, pokemon_name, base_attack, base_defense, base_stamina) {
+    constructor(pokemon_id, pokemon_name, base_attack, base_defense, base_stamina, pokemon_generation) {
             this._pokemon_id = pokemon_id;
             this._pokemon_name = pokemon_name;
             this._base_attack = base_attack
             this._base_defense = base_defense
             this._base_stamina = base_stamina
+            this._pokemon_generation = pokemon_generation
             this._types = new Array();
             this._attack = new Array();
     }
@@ -33,6 +34,10 @@ class class_pokemon {
         return this._base_stamina;
     }
 
+    get pokemon_generation() {
+        return this._pokemon_generation;
+    }
+
     getTypes(){
         const tabType = this._types.map(type => class_type.all_types[type]);
         return tabType;
@@ -51,17 +56,17 @@ class class_pokemon {
         this._types.push(type);
     }
     
-    
+
 
     toString() {
         if (this._pokemon_id !== null) {
             const types = this._types.join(", ");
             return `ID du Pokémon : ${this._pokemon_id}
                     Nom du Pokémon : ${this._pokemon_name}
-                    Forme : ${this._form}
                     Types : ${types}
                     Base d'attaque : ${this._base_attack}
                     Base de défense : ${this._base_defense}
+                    generation : ${this._pokemon_generation}
                     Base de stamina : ${this._base_stamina}`;
         } else {
             return "Ce Pokémon n'a pas la forme 'Normal'.";
@@ -76,6 +81,16 @@ class class_pokemon {
         });
 
         let moves = fast_moves.concat(charged_moves);
+
+        //ajout des génération
+        for (let genName in generation) {
+            let genPokemons = generation[genName];
+            genPokemons.forEach(pokemon => {
+                if (pokemon.id in class_pokemon.all_pokemons) {
+                    class_pokemon.all_pokemons[pokemon.id]._pokemon_generation = pokemon.generation_number;
+                }
+            });
+        }
 
         //ajout des attaques
         moves.forEach(move => {
