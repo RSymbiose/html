@@ -1,5 +1,8 @@
 class_pokemon.import_pokemon();
 
+//affichage des objets pokemons
+console.table(class_pokemon.all_pokemons);
+
 // Fonction pour récupérer les pokémons d'un type donné
 function getPokemonTypes(typeName) {
     const pokemonsOfType = [];
@@ -10,11 +13,10 @@ function getPokemonTypes(typeName) {
             pokemonsOfType.push({
                 id: pokemon._pokemon_id,
                 name: pokemon._pokemon_name,
-                form: pokemon._form,
                 base_attack: pokemon._base_attack,
                 base_defense: pokemon._base_defense,
                 base_stamina: pokemon._base_stamina,
-                image_path: pokemon._image_path,
+                generation: pokemon._pokemon_generation,
                 types: types
             });
         }
