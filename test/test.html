@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tests Pokémon</title>
+    <!-- Incluez tous vos fichiers JavaScript -->
+    <script src="../data/generation.js"></script>
+    <script src="../data/charged_moves.js"></script>
+    <script src="../data/pokemon_moves.js"></script>
+    <script src="../data/pokemon_type.js"></script>
+    <script src="../data/type_effectiveness.js"></script>
+    <script src="../data/cp_multiplier.js"></script>
+    <script src="../data/fast_moves.js"></script>
+    <script src="../data/Type.js"></script>
+    <script src="../data/Pokemon.js"></script>
+    <script src="../data/pokemons.js"></script>
+    <script src="../data/Attack.js"></script>
+</head>
+<body>
+    <h1>Tests Pokémon</h1>
+    <ul>
+        <li><a href="#" onclick="runTest('getPokemonTypes')">Q1. Test getPokemonTypes</a></li>
+        <li><a href="#" onclick="runTest('getPokemonsByAttack')">Q2. Test getPokemonsByAttack</a></li>
+        <li><a href="#" onclick="runTest('getAttacksByType')">Q3. Test getAttacksByType</a></li>
+        <li><a href="#" onclick="runTest('sortPokemonByName')">Q4. Test sortPokemonByName</a></li>
+        <li><a href="#" onclick="runTest('sortPokemonByStamina')">Q5. Test sortPokemonByStamina</a></li>
+        <li><a href="#" onclick="runTest('getWeakestEnemies')">Q6. Test getWeakestEnemies</a></li>
+        <li><a href="#" onclick="runTest('getBestAttackTypesForEnemy')">Q7. Test getBestAttackTypesForEnemy</a></li>
+    </ul>
+
+    <div id="test-arguments">
+        <label for="argument">Argument :</label>
+        <input type="text" id="argument">
+    </div>
+    <script src="test.js"></script>
+</body>
+</html>
