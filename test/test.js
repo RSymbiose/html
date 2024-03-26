@@ -1,10 +1,10 @@
-Pokemon.import_pokemon();
+class_pokemon.import_pokemon();
 
 // Fonction pour récupérer les pokémons d'un type donné
 function getPokemonTypes(typeName) {
     const pokemonsOfType = [];
-    for (const pokemonId in Pokemon.all_pokemons) {
-        const pokemon = Pokemon.all_pokemons[pokemonId];
+    for (const pokemonId in class_pokemon.all_pokemons) {
+        const pokemon = class_pokemon.all_pokemons[pokemonId];
         const types = pokemon.getTypes().join(", ");
         if (types.includes(typeName)) {
             pokemonsOfType.push({
@@ -26,8 +26,8 @@ function getPokemonTypes(typeName) {
 function getPokemonsByAttack(attackName) {
     let pokemons = [];
     console.log("Recherche de Pokémon avec l'attaque :", attackName);
-    for (const pokemonId in Pokemon.all_pokemons) {
-        const pokemon = Pokemon.all_pokemons[pokemonId];
+    for (const pokemonId in class_pokemon.all_pokemons) {
+        const pokemon = class_pokemon.all_pokemons[pokemonId];
         if (pokemon.getAttacks().some(attack => attack._name == attackName)) {
             pokemons.push(pokemon);
         }
@@ -38,8 +38,8 @@ function getPokemonsByAttack(attackName) {
 // Fonction pour récupérer les attaques d'un type donné
 function getAttacksByType(typeName) {
     let attacks = [];
-    for (const attackId in Attack.all_attacks) {
-        const attack = Attack.all_attacks[attackId];
+    for (const attackId in class_attack.all_attacks) {
+        const attack = class_attack.all_attacks[attackId];
         if (attack.type === typeName) {
             attacks.push(attack);
         }
@@ -49,7 +49,7 @@ function getAttacksByType(typeName) {
 
 // Fonction pour trier les pokémons par nom
 function sortPokemonByName() {
-    let resPokemon = Object.values(Pokemon.all_pokemons).sort(function(a,b) {
+    let resPokemon = Object.values(class_pokemon.all_pokemons).sort(function(a,b) {
         if (a._pokemon_name > b._pokemon_name) {
             return 1;
         }
@@ -65,7 +65,7 @@ function sortPokemonByName() {
 
 // Fonction pour trier les pokémons par stamina par ordere décroissant
 function sortPokemonByStamina() {
-    const pokemonsArray = Object.values(Pokemon.all_pokemons);
+    const pokemonsArray = Object.values(class_pokemon.all_pokemons);
     pokemonsArray.sort((pokemon1, pokemon2) => {
         return pokemon2.base_stamina - pokemon1.base_stamina;
     });
@@ -77,12 +77,12 @@ function getWeakestEnemies(attackName) {
     let maxEffectiveness = 0;
     let weakestEnemies = [];
     
-    const attack = Object.values(Attack.all_attacks).find(attack => attack._name === attackName);
+    const attack = Object.values(class_attack.all_attacks).find(attack => attack._name === attackName);
     
     if (!attack) {
         throw new Error(`L'attaque '${attackName}' n'existe pas.`);
     }
-    for (const pokemon of Object.values(Pokemon.all_pokemons)) {
+    for (const pokemon of Object.values(class_pokemon.all_pokemons)) {
         let effectiveness = 1;
         
         const pokemonTypes = pokemon._types;
@@ -109,7 +109,7 @@ function getWeakestEnemies(attackName) {
 function getBestAttackTypesForEnemy(pokemonName) {
     const mostEffectiveTypes = {};
     
-    const pokemon = Object.values(Pokemon.all_pokemons).find(pokemon => pokemon._pokemon_name === pokemonName);
+    const pokemon = Object.values(class_pokemon.all_pokemons).find(pokemon => pokemon._pokemon_name === pokemonName);
     
     if (!pokemon) {
         console.log(`Pokemon '${pokemonName}' not found.`);
