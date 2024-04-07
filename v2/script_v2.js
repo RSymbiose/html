@@ -24,6 +24,8 @@ window.onload = function() {
             let tdId = document.createElement('td');
             tdId.textContent = pokemon._pokemon_id;
             tr.appendChild(tdId);
+            let paddedId = pokemon._pokemon_id.toString().padStart(3, '0');
+            tdId.textContent = paddedId;
             let tdName = document.createElement('td');
             tdName.textContent = pokemon._pokemon_name;
             tr.appendChild(tdName);
@@ -43,7 +45,8 @@ window.onload = function() {
             tdBaseDefense.textContent = pokemon._base_defense;
             tr.appendChild(tdBaseDefense);
             let tdImage = document.createElement('td');
-            tdImage.innerHTML = `<img src="url_to_image" alt="${pokemon._pokemon_name}">`;
+            let imageUrl = `../webp/images/${paddedId}.webp`;
+            tdImage.innerHTML = `<img class="pokemon-image" src="${imageUrl}" alt="${pokemon._pokemon_name}">`;
             tr.appendChild(tdImage);
             table.appendChild(tr);
         }

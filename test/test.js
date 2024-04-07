@@ -1,8 +1,5 @@
 class_pokemon.import_pokemon();
 
-//affichage des objets pokemons
-console.table(class_pokemon.all_pokemons);
-
 // Fonction pour récupérer les pokémons d'un type donné
 function getPokemonTypes(typeName) {
     const pokemonsOfType = [];

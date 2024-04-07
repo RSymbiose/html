@@ -38,10 +38,10 @@ class class_pokemon {
         return this._pokemon_generation;
     }
 
-    getTypes(){
-        const tabType = this._types.map(type => class_type.all_types[type]);
-        return tabType;
+    getTypes() {
+        return this._types;
     }
+    
 
     getAttacks() {
         const tabAtk = this._attack.map(atk => class_attack.all_attacks[atk]);
@@ -78,6 +78,11 @@ class class_pokemon {
         pokemons.filter(poke => poke.form === "Normal").forEach(poke => {
             let Poke = new class_pokemon(poke.pokemon_id, poke.pokemon_name, poke.base_attack, poke.base_defense, poke.base_stamina);
             class_pokemon.all_pokemons[poke.pokemon_id] = Poke;
+
+            // Ajout des types au Pokémon
+            pokemon_type.filter(typeid => typeid.form === "Normal" && typeid.pokemon_id === poke.pokemon_id).forEach(typeid => {
+                Poke.setlistetype(typeid.type);
+            });
         });
 
         let moves = fast_moves.concat(charged_moves);
@@ -116,7 +121,6 @@ class class_pokemon {
             let type = new class_type(typeName, efficacy);
             
             if (typeName in class_type.all_types) {
-                console.info("Type déjà existant : " + typeName);
             } else {
                 class_type.all_types[typeName] = type;
                 pokemon_type.filter(typeid => typeid.form === "Normal").forEach(typeid => {
