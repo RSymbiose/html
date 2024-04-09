@@ -1,0 +1,52 @@
+<!-- pokemons_v2.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokecenter</title>
+    <script src="../data/generation.js"></script>
+    <script src="../data/charged_moves.js"></script>
+    <script src="../data/pokemon_moves.js"></script>
+    <script src="../data/pokemon_type.js"></script>
+    <script src="../data/type_effectiveness.js"></script>
+    <script src="../data/cp_multiplier.js"></script>
+    <script src="../data/fast_moves.js"></script>
+    <script src="../data/class_type.js"></script>
+    <script src="../data/class_pokemon.js"></script>
+    <script src="../data/pokemons.js"></script>
+    <script src="../data/class_attack.js"></script>
+    <script src="../test/test.js"></script>
+    <script src="script_v5.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="filters">
+        <select id="generationFilter">
+            <option value="">Toutes les générations</option>
+        </select>
+        <select id="typeFilter">
+            <option value="">Tous les types</option>
+        </select>
+        <input type="text" id="nameFilter" placeholder="Nom du Pokémon">
+    </div>
+    <table id="pokemonTable">
+        <tr>
+            <th id="idHeader" data-sort-key="_pokemon_id">ID</th>
+            <th id="nameHeader" data-sort-key="_pokemon_name">Nom</th>
+            <th id="generationHeader" data-sort-key="_pokemon_generation">Generation</th>
+            <th id="typesHeader" data-sort-key="getTypes">Types</th>
+            <th id="staminaHeader" data-sort-key="_base_stamina">Endurance</th>
+            <th id="attackHeader" data-sort-key="_base_attack">Points d'attaque de base</th>
+            <th id="defenseHeader" data-sort-key="_base_defense">Points de défense de base</th>
+            <th>Image</th>
+        </tr>
+    </table>
+    <div id="pokemonPopup" style="display: none;"></div>
+    <div id="buttonContainer">
+        <button id="prevButton" disabled>PRÉC</button>
+        <button id="nextButton">SUIV</button>
+    </div>
+    <div id="pageInfo"></div>
+</body>
+</html>
