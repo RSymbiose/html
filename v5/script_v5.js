@@ -206,13 +206,14 @@ function displayPokemonDetails(pokemon) {
 
     // Add Pokemon details
     let details = document.createElement('p');
-    details.textContent = `Détails du Pokémon :
-        ID: ${pokemon._pokemon_id}
-        Nom: ${pokemon._pokemon_name}
-        Types: ${pokemon.getTypes().join(", ")}
-        Endurance: ${pokemon._base_stamina}
-        Points d'attaque de base: ${pokemon._base_attack}
-        Points de défense de base: ${pokemon._base_defense}`;
+    details.innerHTML = `Détails du Pokémon :<br>
+        ID: ${pokemon._pokemon_id}<br>
+        Nom: ${pokemon._pokemon_name}<br>
+        Types: ${pokemon.getTypes().join(", ")}<br>
+        Endurance: ${pokemon._base_stamina}<br>
+        Points d'attaque de base: ${pokemon._base_attack}<br>
+        Points de défense de base: ${pokemon._base_defense}<br>
+        Attaques du Pokemon: \n${pokemon.getAttacks().join("<br>")}`;
     div.appendChild(details);
 
     popup.appendChild(div);
