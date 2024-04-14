@@ -1,4 +1,3 @@
-// script_v3.js
 window.onload = function() {
     class_pokemon.import_pokemon();
     let allPokemons = [];
@@ -8,6 +7,16 @@ window.onload = function() {
 
     let currentPage = 1;
     const pokemonsPerPage = 25;
+
+    document.querySelectorAll('.zoomable').forEach(tdImage => {
+        tdImage.addEventListener('mouseenter', () => {
+            document.body.classList.add('zoomed');
+        });
+
+        tdImage.addEventListener('mouseleave', () => {
+            document.body.classList.remove('zoomed');
+        });
+    });
 
     function displayPokemons() {
         let table = document.getElementById('pokemonTable');
@@ -45,9 +54,10 @@ window.onload = function() {
             tdBaseDefense.textContent = pokemon._base_defense;
             tr.appendChild(tdBaseDefense);
             let tdImage = document.createElement('td');
+            tdImage.classList.add('zoomable');
             let imageUrl = `../webp/images/${paddedId}.webp`;
             tdImage.innerHTML = `<img class="pokemon-image" src="${imageUrl}" alt="${pokemon._pokemon_name}">`;
-            tr.appendChild(tdImage);
+            tr.appendChild(tdImage);      
 
             tr.addEventListener('click', () => {
                 displayPokemonDetails(pokemon);
@@ -63,13 +73,11 @@ window.onload = function() {
     }
 
     function displayPokemonDetails(pokemon) {
-        // Récupérer la référence à la table
         let table = document.getElementById('pokemonTable');
-        // Cacher la table
         table.style.display = 'none';
     
         let popup = document.getElementById('pokemonPopup');
-        popup.innerHTML = ''; // Clear previous content
+        popup.innerHTML = '';
     
         let div = document.createElement('div');
         div.classList.add('popup');
@@ -79,23 +87,19 @@ window.onload = function() {
         closeButton.addEventListener('click', () => {
             popup.style.display = 'none';
             document.body.classList.remove('blur');
-            // Réafficher la table lorsque la popup est fermée
             table.style.display = 'table';
-            // Réafficher les boutons PRÉC et SUIV ainsi que l'indicateur de page
             document.getElementById('prevButton').style.display = 'inline-block';
             document.getElementById('nextButton').style.display = 'inline-block';
             document.getElementById('pageInfo').style.display = 'block';
         });
         div.appendChild(closeButton);
     
-        // Add Pokemon image
         let img = document.createElement('img');
         let imageUrl = `../webp/images/${pokemon._pokemon_id.toString().padStart(3, '0')}.webp`;
         img.src = imageUrl;
         img.alt = pokemon._pokemon_name;
         div.appendChild(img);
     
-        // Add Pokemon details
         let details = document.createElement('p');
         details.textContent = `Détails du Pokémon :
             ID: ${pokemon._pokemon_id}
@@ -109,17 +113,11 @@ window.onload = function() {
         popup.appendChild(div);
         popup.style.display = 'block';
         document.body.classList.add('blur');
-        // Cacher les boutons PRÉC et SUIV ainsi que l'indicateur de page
         document.getElementById('prevButton').style.display = 'none';
         document.getElementById('nextButton').style.display = 'none';
         document.getElementById('pageInfo').style.display = 'none';
     }
     
-    
-    
-    
-
-
     document.getElementById('prevButton').addEventListener('click', () => {
         currentPage--;
         displayPokemons();

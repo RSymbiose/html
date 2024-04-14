@@ -1,4 +1,3 @@
-// script_v2.js
 window.onload = function() {
     class_pokemon.import_pokemon();
     let allPokemons = [];
